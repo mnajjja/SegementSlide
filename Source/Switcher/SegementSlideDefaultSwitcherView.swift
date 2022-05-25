@@ -169,7 +169,6 @@ extension SegementSlideDefaultSwitcherView {
             titleButtons.append(button)
         }
         scrollView.addSubview(switchSeparatorView)
-        switchSeparatorView.backgroundColor = .lightGray
         scrollView.addSubview(indicatorView)
         indicatorView.layer.masksToBounds = true
         indicatorView.layer.cornerRadius = innerConfig.indicatorHeight/2
@@ -207,7 +206,7 @@ extension SegementSlideDefaultSwitcherView {
         switch innerConfig.type {
         case .tab:
             scrollView.contentSize = CGSize(width: bounds.width, height: bounds.height)
-            switchSeparatorView.frame = CGRect(x: 0, y: frame.height - 1, width: frame.width, height: 2)
+            switchSeparatorView.frame = CGRect(x: 0, y: frame.height - 0.5, width: frame.width, height: 0.5)
         case .segement:
             scrollView.contentSize = CGSize(width: offsetX-innerConfig.horizontalSpace+innerConfig.horizontalMargin, height: bounds.height)
         }
