@@ -24,6 +24,7 @@ public class SegementSlideDefaultSwitcherView: UIView {
     
     public private(set) var scrollView = UIScrollView()
     private let indicatorView = UIView()
+    public let switchSeparatorView = UIView()
     private var titleButtons: [UIButton] = []
     private var innerConfig: SegementSlideDefaultSwitcherConfig = SegementSlideDefaultSwitcherConfig.shared
     
@@ -146,7 +147,9 @@ extension SegementSlideDefaultSwitcherView {
         }
         titleButtons.removeAll()
         indicatorView.removeFromSuperview()
+        switchSeparatorView.removeFromSuperview()
         indicatorView.frame = .zero
+        switchSeparatorView.frame = .zero
         scrollView.isScrollEnabled = innerConfig.type == .segement
         innerConfig = config
         guard let titles = delegate?.titlesInSegementSlideSwitcherView,
@@ -165,6 +168,8 @@ extension SegementSlideDefaultSwitcherView {
             scrollView.addSubview(button)
             titleButtons.append(button)
         }
+        scrollView.addSubview(switchSeparatorView)
+        switchSeparatorView.backgroundColor = .lightGray
         scrollView.addSubview(indicatorView)
         indicatorView.layer.masksToBounds = true
         indicatorView.layer.cornerRadius = innerConfig.indicatorHeight/2
@@ -202,6 +207,7 @@ extension SegementSlideDefaultSwitcherView {
         switch innerConfig.type {
         case .tab:
             scrollView.contentSize = CGSize(width: bounds.width, height: bounds.height)
+            switchSeparatorView.frame = CGRect(x: 0, y: frame.height - 1, width: frame.width, height: 2)
         case .segement:
             scrollView.contentSize = CGSize(width: offsetX-innerConfig.horizontalSpace+innerConfig.horizontalMargin, height: bounds.height)
         }
