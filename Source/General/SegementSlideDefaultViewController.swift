@@ -11,7 +11,7 @@ open class SegementSlideDefaultViewController: SegementSlideViewController {
     
     private let defaultSwitcherView = SegementSlideDefaultSwitcherView()
     
-    var switcherSeparatorColor: UIColor = .lightGray {
+    open var switcherSeparatorColor: UIColor = .lightGray {
         didSet {
             defaultSwitcherView.switchSeparatorView.backgroundColor = switcherSeparatorColor
         }
