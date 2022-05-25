@@ -27,16 +27,16 @@ public struct SegementSlideDefaultSwitcherConfig {
     public var badgeHeightForCustomType: CGFloat
     public var badgeFontForCountType: UIFont
     
-    public init(type: SwitcherType = .segement,
+    public init(type: SwitcherType = .tab,
                 horizontalMargin: CGFloat = 16,
                 horizontalSpace: CGFloat = 32,
                 normalTitleFont: UIFont = UIFont.systemFont(ofSize: 15),
                 selectedTitleFont: UIFont = UIFont.systemFont(ofSize: 15, weight: .medium),
                 normalTitleColor: UIColor = UIColor.gray,
-                selectedTitleColor: UIColor = UIColor.darkGray,
+                selectedTitleColor: UIColor = .blue,
                 indicatorWidth: CGFloat = 30,
                 indicatorHeight: CGFloat = 2,
-                indicatorColor: UIColor = UIColor.darkGray,
+                indicatorColor: UIColor = .blue,
                 badgeHeightForPointType: CGFloat = 9,
                 badgeHeightForCountType: CGFloat = 15,
                 badgeHeightForCustomType: CGFloat = 14,

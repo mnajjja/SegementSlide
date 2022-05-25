@@ -95,11 +95,7 @@ public class SegementSlideDefaultSwitcherView: UIView {
             }
             let titleLabelText = titleButton.titleLabel?.text ?? ""
             let width: CGFloat
-            if selectedIndex == index {
-                width = titleLabelText.boundingWidth(with: innerConfig.selectedTitleFont)
-            } else {
-                width = titleLabelText.boundingWidth(with: innerConfig.normalTitleFont)
-            }
+            width = UIScreen.main.bounds.width / CGFloat(titleButtons.count)
             let height = titleButton.titleLabel?.font.lineHeight ?? titleButton.bounds.height
             switch type {
             case .none:
@@ -183,12 +179,12 @@ extension SegementSlideDefaultSwitcherView {
             scrollView.contentSize = CGSize(width: bounds.width, height: bounds.height)
             return
         }
-        var offsetX = innerConfig.horizontalMargin
+        var offsetX: CGFloat = 0
         for titleButton in titleButtons {
             let buttonWidth: CGFloat
             switch innerConfig.type {
             case .tab:
-                buttonWidth = (bounds.width-innerConfig.horizontalMargin*2)/CGFloat(titleButtons.count)
+                buttonWidth = (bounds.width)/CGFloat(titleButtons.count)
             case .segement:
                 let title = titleButton.title(for: .normal) ?? ""
                 let normalButtonWidth = title.boundingWidth(with: innerConfig.normalTitleFont)
@@ -235,10 +231,10 @@ extension SegementSlideDefaultSwitcherView {
         titleButton.titleLabel?.font = innerConfig.selectedTitleFont
         if animated, indicatorView.frame != .zero {
             UIView.animate(withDuration: 0.25) {
-                self.indicatorView.frame = CGRect(x: titleButton.frame.origin.x+(titleButton.bounds.width-self.innerConfig.indicatorWidth)/2, y: self.frame.height-self.innerConfig.indicatorHeight, width: self.innerConfig.indicatorWidth, height: self.innerConfig.indicatorHeight)
+                self.indicatorView.frame = CGRect(x: titleButton.frame.origin.x, y: self.frame.height-self.innerConfig.indicatorHeight, width: titleButton.frame.width, height: self.innerConfig.indicatorHeight)
             }
         } else {
-            indicatorView.frame = CGRect(x: titleButton.frame.origin.x+(titleButton.bounds.width-innerConfig.indicatorWidth)/2, y: frame.height-innerConfig.indicatorHeight, width: innerConfig.indicatorWidth, height: innerConfig.indicatorHeight)
+            indicatorView.frame = CGRect(x: titleButton.frame.origin.x, y: frame.height-innerConfig.indicatorHeight, width: titleButton.frame.width, height: innerConfig.indicatorHeight)
         }
         if case .segement = innerConfig.type {
             var offsetX = titleButton.frame.origin.x-(scrollView.bounds.width-titleButton.bounds.width)/2
